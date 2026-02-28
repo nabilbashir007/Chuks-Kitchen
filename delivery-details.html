@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delivery Details – Chuks Kitchen</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .page-bg {
+      background: #F3F4F6;
+      flex: 1;
+      padding: 40px 44px 60px;
+    }
+
+    /* Card: 684px wide centered, white, border-radius 8px, padding 36px 18px, gap 18px */
+    .delivery-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 36px 18px;
+      gap: 18px;
+      width: 684px;
+      background: var(--white);
+      border-radius: 8px;
+      margin: 0 auto;
+    }
+
+    /* Title: Inter 700 32px */
+    .delivery-title {
+      font-family: var(--font-body);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 42px;
+      color: var(--black);
+      width: 100%;
+    }
+    .delivery-divider {
+      border: none;
+      border-top: 0.5px solid #BDBDBD;
+      width: 100%;
+    }
+
+    /* Section blocks */
+    .delivery-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      width: 100%;
+    }
+
+    /* Text area style inputs */
+    .field-box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px;
+      gap: 10px;
+      width: 100%;
+      border: 1px solid #BDBDBD;
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    /* Address box: taller, 109px */
+    .field-box--address {
+      align-items: flex-start;
+      min-height: 109px;
+      padding: 10px;
+    }
+
+    .field-box__text {
+      flex: 1;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: var(--black);
+    }
+    .field-box__action {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #1E88E5;
+      text-align: right;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    /* Section heading: Inter 600 20px */
+    .field-section-title {
+      font-family: var(--font-body);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 30px;
+      color: var(--black);
+    }
+
+    /* Contact Address heading: Inter 500 24px */
+    .field-section-title--lg {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 34px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 19px;
+      width: 100%;
+    }
+
+    /* Delivery instructions: taller box */
+    .field-box--instructions {
+      align-items: flex-start;
+      min-height: 86px;
+    }
+
+    @media (max-width: 740px) {
+      .delivery-card { width: 100%; padding: 24px 12px; }
+      .page-bg { padding: 20px 12px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar__logo">Chuks Kitchen</a>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar__links">
+      <a href="index.html">Home</a>
+      <a href="cart.html">Explore</a>
+      <a href="order-summary.html">My Orders</a>
+      <a href="signup.html">Account</a>
+    </div>
+    <a href="signin.html" class="btn-nav-login">Login</a>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="page-bg">
+    <div class="delivery-card">
+
+      <h1 class="delivery-title">Delivery Details</h1>
+      <hr class="delivery-divider" />
+
+      <div class="delivery-fields">
+
+        <!-- Delivery Address -->
+        <div class="field-box field-box--address">
+          <span class="field-box__text">
+            Home: 123 Main Street, Victoria Island, Lagos<br />
+            Apt 4B, Opposite Mega Plaza
+          </span>
+          <a href="#" class="field-box__action">Change Address</a>
+        </div>
+
+        <!-- Delivery Time -->
+        <div class="field-group">
+          <p class="field-section-title">Delivery Time</p>
+          <div class="field-box">
+            <span class="field-box__text">ASAP(30-25)</span>
+          </div>
+        </div>
+
+        <!-- Delivery Instructions -->
+        <div class="field-group">
+          <p class="field-section-title">Delivery Instructions (Optional)</p>
+          <div class="field-box field-box--instructions">
+            <span class="field-box__text">E.g leave at the front of the door, knock twice...................</span>
+          </div>
+        </div>
+
+        <!-- Contact Address -->
+        <div class="field-group">
+          <p class="field-section-title field-section-title--lg">Contact Address</p>
+          <div class="field-box">
+            <span class="field-box__text">+234 801 234 5678</span>
+          </div>
+        </div>
+
+      </div><!-- /.delivery-fields -->
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer__inner">
+      <div class="footer__col">
+        <span class="footer__logo">Chuks Kitchen</span>
+        <p class="footer__desc">Bringing the authentic flavors of Nigerian home cooking to your table, with passion and care.</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">Quick Links</h4>
+        <ul class="footer__list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cart.html">Explore</a></li>
+          <li><a href="order-summary.html">My Order</a></li>
+          <li><a href="signup.html">Account</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">Contact Us</h4>
+        <ul class="footer__list">
+          <li>+234 801 234 5678</li>
+          <li>hello@chukskitchen.com</li>
+          <li>123 Taste Blvd, Lagos, Nigeriat</li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <ul class="footer__list">
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Linkedin</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copyright">© 2020 Lift Media. All rights reserved.</span>
+      <button class="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

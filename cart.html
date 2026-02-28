@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart – Chuks Kitchen</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Cart page: bg #F3F4F6 */
+    .page-bg {
+      background: #F3F4F6;
+      flex: 1;
+      padding: 40px 44px 60px;
+    }
+
+    /* Frame 1000004223: white card, border-radius 4px */
+    .cart-card {
+      background: var(--white);
+      border-radius: 4px;
+      padding: 21px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      max-width: 1352px;
+      margin: 0 auto;
+    }
+
+    /* Title: Inter 700 32px */
+    .cart-title {
+      font-family: var(--font-body);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 42px;
+      color: var(--black);
+      padding: 0 14px;
+    }
+
+    /* Each cart item row */
+    .cart-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 7px 24px;
+      gap: 47px;
+      background: var(--white);
+      border: 0.5px solid #BDBDBD;
+      border-radius: 5px;
+    }
+
+    /* Food image: 190 x 173.93px, border-radius 5.59px */
+    .cart-item__img {
+      width: 190px;
+      height: 174px;
+      object-fit: cover;
+      border-radius: 5.59px;
+      flex-shrink: 0;
+    }
+
+    /* Info block */
+    .cart-item__info {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Name: Inter 700 32px */
+    .cart-item__name {
+      font-family: var(--font-body);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 42px;
+      color: var(--black);
+    }
+
+    /* Description: Inter 500 24px #4B5563 */
+    .cart-item__desc {
+      font-family: var(--font-body);
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 34px;
+      color: #4B5563;
+    }
+
+    /* Qty controls row */
+    .cart-item__controls {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 47px;
+    }
+
+    /* +/- buttons: 30x30, bg #BDBDBD, border-radius 8px */
+    .qty-btn {
+      width: 30px;
+      height: 30px;
+      background: #BDBDBD;
+      border-radius: 8px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--black);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .qty-btn:hover { background: #9CA3AF; }
+
+    /* Quantity number: Inter 500 51.5px */
+    .qty-value {
+      font-family: var(--font-body);
+      font-size: 51.5px;
+      font-weight: 500;
+      line-height: 73px;
+      color: var(--black);
+      text-align: center;
+      min-width: 69px;
+    }
+
+    /* Price: Inter 700 32px #FF7A18 */
+    .cart-item__price {
+      font-family: var(--font-body);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 42px;
+      color: var(--orange);
+      text-align: center;
+      min-width: 185px;
+      flex-shrink: 0;
+    }
+
+    /* Remove: orange X icon ~42x42 */
+    .cart-item__remove {
+      width: 42px;
+      height: 42px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .cart-item__remove svg {
+      width: 42px;
+      height: 42px;
+    }
+
+    /* Add more link: Inter 500 16px #1E88E5 */
+    .cart-add-more {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0 3px;
+      gap: 11px;
+      color: #1E88E5;
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+    .cart-add-more .plus-icon {
+      width: 17.5px;
+      height: 17.5px;
+      background: #1E88E5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 900px) {
+      .page-bg { padding: 20px 12px 40px; }
+      .cart-item { flex-wrap: wrap; gap: 16px; padding: 12px; }
+      .cart-item__img { width: 100px; height: 92px; }
+      .cart-item__name { font-size: 18px; line-height: 24px; }
+      .cart-item__desc { font-size: 14px; line-height: 20px; }
+      .qty-value { font-size: 28px; line-height: 40px; min-width: 36px; }
+      .cart-item__price { font-size: 18px; min-width: auto; }
+      .cart-item__controls { gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar__logo">Chuks Kitchen</a>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar__links">
+      <a href="index.html">Home</a>
+      <a href="cart.html">Explore</a>
+      <a href="order-summary.html" class="active">My Orders</a>
+      <a href="signup.html">Account</a>
+    </div>
+    <a href="signin.html" class="btn-nav-login">Login</a>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="page-bg">
+    <div class="cart-card">
+      <h1 class="cart-title">Your Cart</h1>
+
+      <!-- Item 1 -->
+      <div class="cart-item" data-price="3200">
+        <img src="./assets/Food 1.png" alt="Jollof Rice & Fried Chicken" class="cart-item__img" />
+        <div class="cart-item__info">
+          <h3 class="cart-item__name">Jollof Rice &amp; Fried Chicken</h3>
+          <p class="cart-item__desc">With plantain, extra pepper sauce</p>
+          <div class="cart-item__controls">
+            <button class="qty-btn qty-plus">+</button>
+            <span class="qty-value">1</span>
+            <button class="qty-btn qty-minus">−</button>
+          </div>
+        </div>
+        <span class="cart-item__price">₦3,200</span>
+        <button class="cart-item__remove" aria-label="Remove item">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FF7A18" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="cart-item" data-price="3200">
+        <img src="./assets/Food 2.png" alt="Jollof Rice & Fried Chicken" class="cart-item__img" />
+        <div class="cart-item__info">
+          <h3 class="cart-item__name">Jollof Rice &amp; Fried Chicken</h3>
+          <p class="cart-item__desc">With plantain, extra pepper sauce</p>
+          <div class="cart-item__controls">
+            <button class="qty-btn qty-plus">+</button>
+            <span class="qty-value">1</span>
+            <button class="qty-btn qty-minus">−</button>
+          </div>
+        </div>
+        <span class="cart-item__price">₦3,200</span>
+        <button class="cart-item__remove" aria-label="Remove item">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FF7A18" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="cart-item" data-price="3200">
+        <img src="./assets/Food 3.png" alt="Jollof Rice & Fried Chicken" class="cart-item__img" />
+        <div class="cart-item__info">
+          <h3 class="cart-item__name">Jollof Rice &amp; Fried Chicken</h3>
+          <p class="cart-item__desc">With plantain, extra pepper sauce</p>
+          <div class="cart-item__controls">
+            <button class="qty-btn qty-plus">+</button>
+            <span class="qty-value">1</span>
+            <button class="qty-btn qty-minus">−</button>
+          </div>
+        </div>
+        <span class="cart-item__price">₦3,200</span>
+        <button class="cart-item__remove" aria-label="Remove item">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FF7A18" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="cart-item" data-price="3200">
+        <img src="./assets/Food 4.png" alt="Jollof Rice & Fried Chicken" class="cart-item__img" />
+        <div class="cart-item__info">
+          <h3 class="cart-item__name">Jollof Rice &amp; Fried Chicken</h3>
+          <p class="cart-item__desc">With plantain, extra pepper sauce</p>
+          <div class="cart-item__controls">
+            <button class="qty-btn qty-plus">+</button>
+            <span class="qty-value">1</span>
+            <button class="qty-btn qty-minus">−</button>
+          </div>
+        </div>
+        <span class="cart-item__price">₦3,200</span>
+        <button class="cart-item__remove" aria-label="Remove item">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FF7A18" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Add more -->
+      <a href="index.html" class="cart-add-more">
+        <span class="plus-icon">+</span>
+        Add more items from Chuks Kitchen
+      </a>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer__inner">
+      <div class="footer__col">
+        <span class="footer__logo">Chuks Kitchen</span>
+        <p class="footer__desc">Bringing the authentic flavors of Nigerian home cooking to your table, with passion and care.</p>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">Quick Links</h4>
+        <ul class="footer__list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cart.html">Explore</a></li>
+          <li><a href="order-summary.html">My Order</a></li>
+          <li><a href="signup.html">Account</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__heading">Contact Us</h4>
+        <ul class="footer__list">
+          <li>+234 801 234 5678</li>
+          <li>hello@chukskitchen.com</li>
+          <li>123 Taste Blvd, Lagos, Nigeriat</li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <ul class="footer__list">
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Linkedin</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copyright">© 2020 Lift Media. All rights reserved.</span>
+      <button class="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Cart interactions
+    document.querySelectorAll('.cart-item').forEach(item => {
+      const price   = parseInt(item.dataset.price);
+      const qtyEl   = item.querySelector('.qty-value');
+      const priceEl = item.querySelector('.cart-item__price');
+
+      item.querySelector('.qty-plus').addEventListener('click', () => {
+        const q = parseInt(qtyEl.textContent) + 1;
+        qtyEl.textContent   = q;
+        priceEl.textContent = '₦' + (price * q).toLocaleString();
+      });
+      item.querySelector('.qty-minus').addEventListener('click', () => {
+        const q = Math.max(1, parseInt(qtyEl.textContent) - 1);
+        qtyEl.textContent   = q;
+        priceEl.textContent = '₦' + (price * q).toLocaleString();
+      });
+      item.querySelector('.cart-item__remove').addEventListener('click', () => {
+        item.style.transition = 'opacity 0.25s';
+        item.style.opacity = '0';
+        setTimeout(() => item.remove(), 250);
+      });
+    });
+  </script>
+</body>
+</html>
